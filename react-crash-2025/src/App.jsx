@@ -1,24 +1,23 @@
+import React from 'react';
+import './App.css'; // Assuming you have a CSS file for styles
+import {Route, createBrowserRouter, createRoutesFromElements,RouterProvider, Router} from 'react-router-dom'
+import HomePage from './pages/HomePage';
+import MainLayout from './layouts/MainLayout';
+import JobsPage from './pages/JobsPage';
+import NotFoundPage from './pages/NotFoundPage';
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<MainLayout/>}>
+      <Route index element={<HomePage/>}/>
+      <Route path="/jobs" element={<JobsPage/>}/>
+      <Route path="*" element={<NotFoundPage/>}/>
+    </Route>
+  )
+);
+
 const App = () => {
-const names = ['Alice', 'Bob', 'Charlie'];
-const name = 'World';
-const x = 5;
-const y = 10;
-const loggedIn = false;
-
-
-return (
-    <>
-      <div className='text-5xl'>App</div>
-      <p style = {{ color: 'red', fontSize: '20px' }}>Hello {name}</p>
-      <p>The sum of {x} and {y} is {x + y}</p>
-      <ul>
-        {names.map((name,index) => (
-          <li key={index}>{name}</li>
-        ))}
-      </ul>
-      {loggedIn ? <h1>Hello Member</h1> : <h1>Hello Guest</h1>}
-    </>
-  );
+  return <RouterProvider router={router}/>;
 };
 
 export default App;
